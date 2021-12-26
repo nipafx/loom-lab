@@ -1,8 +1,4 @@
-package dev.nipafx.lab.loom.disk.virtual_threads;
-
-import dev.nipafx.lab.loom.disk.FileStats;
-import dev.nipafx.lab.loom.disk.FolderStats;
-import dev.nipafx.lab.loom.disk.Stats;
+package dev.nipafx.lab.loom.disk;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -17,21 +13,12 @@ import java.util.concurrent.atomic.LongAdder;
 
 import static java.util.function.Predicate.not;
 
-public class DiskStats {
+class VirtualThreadsAnalyzer implements Analyzer {
 
 	private static final LongAdder VIRTUAL_THREAD_COUNT = new LongAdder();
 
-	public static void main(String[] args) throws InterruptedException {
-		long startTime = System.currentTimeMillis();
-		var rootDirectory = Path.of("/home/nipa");
-		var stats = analyzeFolder(rootDirectory);
-		System.out.println(stats);
-		long elapsedTime = System.currentTimeMillis() - startTime;
-		System.out.println("Time: " + elapsedTime + "ms");
-		System.out.println("Virtual threads: " + VIRTUAL_THREAD_COUNT);
-	}
-
-	private static FolderStats analyzeFolder(Path folder) throws UncheckedIOException, InterruptedException {
+	@Override
+	public FolderStats analyzeFolder(Path folder) throws UncheckedIOException, InterruptedException {
 		try (var executor = StructuredExecutor.open();
 				var content = Files.list(folder)) {
 
@@ -70,6 +57,11 @@ public class DiskStats {
 		} catch (IOException ex) {
 			throw new UncheckedIOException(ex);
 		}
+	}
+
+	@Override
+	public String analyzerStats() {
+		return "Virtual threads: " + VIRTUAL_THREAD_COUNT.sum();
 	}
 
 }
