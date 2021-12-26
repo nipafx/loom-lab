@@ -15,7 +15,6 @@ public class DiskStats {
 
 	public static void main(String[] args) {
 		long startTime = System.currentTimeMillis();
-//		var rootDirectory = Path.of("/home/nipa/.m2/repository");
 		var rootDirectory = Path.of("/home/nipa");
 		var stats = analyzeFolder(rootDirectory);
 		System.out.println(stats);
