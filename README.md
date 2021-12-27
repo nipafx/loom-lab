@@ -25,3 +25,31 @@ Where:
 
 * `$THREADING` is either "single" or "virtual"
 * `$PATH` is the directory to analyze - pick something that takes at least a few seconds
+
+### Echo Client & Server
+
+A client and server that exchange messages via sockets on localhost:8080.
+Client protocol:
+
+* sends a single line, terminated by a newline
+* waits for a single line (i.e. a string terminated by a newline) to be received
+
+Server protocol:
+
+* reads a single line (i.e. a string terminated by a newline) from that socket
+* waits a predetermined amount of time
+* replies with the same string, including the newline
+
+To run, execute:
+
+```shell
+# in one shell
+java --enable-preview -p target/ -m dev.nipafx.lab.loom/dev.nipafx.lab.loom.echo.Echo $OPTIONS
+# in another shell
+java --enable-preview -p target/ -m dev.nipafx.lab.loom/dev.nipafx.lab.loom.echo.Send $OPTIONS
+```
+
+For required and optional `$OPTIONS`,
+see [`Echo.java`.](src/main/java/dev/nipafx/lab/loom/echo/server/Echo.java)
+and [`Send.java`.](src/main/java/dev/nipafx/lab/loom/echo/client/Send.java),
+respectively.
