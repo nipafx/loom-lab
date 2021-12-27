@@ -7,6 +7,9 @@ import java.nio.file.Path;
 
 import static java.util.function.Predicate.not;
 
+/**
+ * Uses a single thread to gather statistics (hence: sequential).
+ */
 class SingleThreadAnalyzer implements Analyzer {
 
 	@Override

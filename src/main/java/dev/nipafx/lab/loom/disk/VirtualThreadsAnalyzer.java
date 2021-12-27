@@ -13,6 +13,9 @@ import java.util.concurrent.atomic.LongAdder;
 
 import static java.util.function.Predicate.not;
 
+/**
+ * Uses a new virtual thread for each file and folder to analyze (i.e. easily hundreds of thousands or millions).
+ */
 class VirtualThreadsAnalyzer implements Analyzer {
 
 	private static final LongAdder VIRTUAL_THREAD_COUNT = new LongAdder();
@@ -41,7 +44,6 @@ class VirtualThreadsAnalyzer implements Analyzer {
 			long totalSize = children.stream().mapToLong(Stats::size).sum();
 			return new FolderStats(folder, totalSize, children);
 		} catch (ExecutionException ex) {
-			// TODO: can the cause be an interrupted exception?
 			if (ex.getCause() instanceof RuntimeException runtimeException)
 				throw runtimeException;
 			else
@@ -61,7 +63,7 @@ class VirtualThreadsAnalyzer implements Analyzer {
 
 	@Override
 	public String analyzerStats() {
-		return "Virtual threads: " + VIRTUAL_THREAD_COUNT.sum();
+		return "Number of created virtual threads: " + VIRTUAL_THREAD_COUNT.sum();
 	}
 
 }
