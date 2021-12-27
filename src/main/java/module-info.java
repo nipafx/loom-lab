@@ -1,2 +1,2 @@
-module dev.nipafx.lab.loom {
+module loom.lab {
 }

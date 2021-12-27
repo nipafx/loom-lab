@@ -25,6 +25,19 @@
 					<compilerArgs>--enable-preview</compilerArgs>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>dev.nipafx.lab.loom.Experiments</mainClass>
+						</manifest>
+					</archive>
+					<finalName>loom-lab</finalName>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 

@@ -7,24 +7,29 @@ Experiments with Project Loom's features based on these JEP(draft)s:
 
 ## Experiments
 
-To build and execute these experiments, you need a current [Project Loom EA build](https://jdk.java.net/loom/).
-You can build all the examples with `mvn compile` (don't `package` or the module will exist twice in `target` - once as a JAR, once in `classes` folder)
+For these experiments, you need a current [Project Loom EA build](https://jdk.java.net/loom/) and Maven.
+Build the project with `mvn package` to get `target/loom-lab.jar`.
+To run it:
 
-### DiskAnalyzer
-
-Walks over all folders and files in a given directory to gather their respective sizes.
-Can be configured to either run as a single thread or with one virtual thread for each file/folder.
-
-To run, execute:
-
-```shell
-java --enable-preview -p target/ -m dev.nipafx.lab.loom/dev.nipafx.lab.loom.disk.DiskStats $THREADING $PATH
+```
+java --enable-preview -p target/loom-lab.jar -m loom.lab $EXPERIMENT $ARGUMENTS
 ```
 
 Where:
 
-* `$THREADING` is either "single" or "virtual"
-* `$PATH` is the directory to analyze - pick something that takes at least a few seconds
+* `$EXPERIMENT` selects one of the experiments by name
+* `$ARGUMENTS` configures the experiment
+
+For details on these, see specific experiments below.
+
+### Disk Stats
+
+Walks over all folders and files in a given directory to gather their respective sizes.
+Can be configured to either run as a single thread or with one virtual thread for each file/folder.
+
+* package: [`dev.nipafx.lab.loom.disk`](src/main/java/dev/nipafx/lab/loom/disk)
+* name: `DiskStats`
+* arguments: see [`DiskStats.java`.](src/main/java/dev/nipafx/lab/loom/disk/DiskStats.java)
 
 ### Echo Client & Server
 
@@ -40,16 +45,12 @@ Server protocol:
 * waits a predetermined amount of time
 * replies with the same string, including the newline
 
-To run, execute:
+To try this out, run the client and the server in different shells.
 
-```shell
-# in one shell
-java --enable-preview -p target/ -m dev.nipafx.lab.loom/dev.nipafx.lab.loom.echo.Echo $OPTIONS
-# in another shell
-java --enable-preview -p target/ -m dev.nipafx.lab.loom/dev.nipafx.lab.loom.echo.Send $OPTIONS
-```
-
-For required and optional `$OPTIONS`,
-see [`Echo.java`.](src/main/java/dev/nipafx/lab/loom/echo/server/Echo.java)
-and [`Send.java`.](src/main/java/dev/nipafx/lab/loom/echo/client/Send.java),
-respectively.
+* package: [`dev.nipafx.lab.loom.echo`](src/main/java/dev/nipafx/lab/loom/echo)
+* server
+	* name: `EchoServer`
+	* arguments: see [`Echo.java`.](src/main/java/dev/nipafx/lab/loom/echo/server/Echo.java)
+* client
+    * name: `EchoClient`
+    * arguments: see [`Send.java`.](src/main/java/dev/nipafx/lab/loom/echo/client/Send.java), 
