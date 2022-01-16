@@ -17,15 +17,14 @@ public class Echo {
 	}
 
 	/**
-	 * @param args
-	 * 	1: threading strategy: "pooled" or "virtual" (required)
-	 * 	2: time to wait before echoing in ms (optional - defaults to {@link Configuration#DEFAULT_ECHO_WAIT_MS DEFAULT_MESSAGE_COUNT}
-	 * 	3: number of threads for the pooled sender (optional - defaults to {@link Configuration#DEFAULT_THREAD_COUNT DEFAULT_THREAD_COUNT}
+	 * @param args 0: threading strategy: "pooled" or "virtual" (required)
+	 *             1: time to wait before echoing in ms (optional - defaults to {@link Configuration#DEFAULT_ECHO_WAIT_MS DEFAULT_MESSAGE_COUNT}
+	 *             2: number of threads for the pooled sender (optional - defaults to {@link Configuration#DEFAULT_THREAD_COUNT DEFAULT_THREAD_COUNT}
 	 */
 	public static void main(String[] args) throws IOException {
 		var config = Configuration.parse(args);
 		var echo = new Echo(config.echoWaitMs());
-		Server server = switch(config.threading()) {
+		Server server = switch (config.threading()) {
 			case POOLED -> new PooledServer(echo::echo, config.threadCount());
 			case VIRTUAL -> new VirtualThreadServer(echo::echo);
 		};
@@ -62,7 +61,7 @@ public class Echo {
 				throw new IllegalArgumentException("Please specify the implementation.");
 			var implementation = Threading.valueOf(args[0].toUpperCase());
 			var echoWaitMs = args.length == 2 ? Integer.parseInt(args[1]) : DEFAULT_ECHO_WAIT_MS;
-			var threadCount = args.length ==3 ? Integer.parseInt(args[2]) : DEFAULT_THREAD_COUNT;
+			var threadCount = args.length == 3 ? Integer.parseInt(args[2]) : DEFAULT_THREAD_COUNT;
 			return new Configuration(implementation, echoWaitMs, threadCount);
 		}
 

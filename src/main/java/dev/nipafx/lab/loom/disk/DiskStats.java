@@ -5,9 +5,8 @@ import java.nio.file.Path;
 public class DiskStats {
 
 	/**
-	 * @param args:
-	 * 		0: threading strategy: "single" or "virtual" (required)
-	 * 	    1: path to analyze (required)
+	 * @param args 0: threading strategy: "single" or "virtual" (required)
+	 *             1: path to analyze (required)
 	 */
 	public static void main(String[] args) throws InterruptedException {
 		var config = Configuration.parse(args);

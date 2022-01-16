@@ -3,7 +3,7 @@ package dev.nipafx.lab.loom.disk;
 import java.nio.file.Path;
 import java.util.List;
 
-public sealed interface Stats permits FileStats, FolderStats{
+public sealed interface Stats permits FileStats, FolderStats {
 
 	Path path();
 

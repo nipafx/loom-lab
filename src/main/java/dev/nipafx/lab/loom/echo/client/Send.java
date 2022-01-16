@@ -14,14 +14,13 @@ import java.net.Socket;
 public class Send {
 
 	/**
-	 * @param args
-	 * 	1: threading strategy: "pooled" or "virtual" (required)
-	 * 	2: number of messages (optional - defaults to {@link Configuration#DEFAULT_MESSAGE_COUNT DEFAULT_MESSAGE_COUNT}
-	 * 	3: number of threads for the pooled sender (optional - defaults to {@link Configuration#DEFAULT_THREAD_COUNT DEFAULT_THREAD_COUNT}
+	 * @param args 0: threading strategy: "pooled" or "virtual" (required)
+	 *             1: number of messages (optional - defaults to {@link Configuration#DEFAULT_MESSAGE_COUNT DEFAULT_MESSAGE_COUNT}
+	 *             2: number of threads for the pooled sender (optional - defaults to {@link Configuration#DEFAULT_THREAD_COUNT DEFAULT_THREAD_COUNT}
 	 */
 	public static void main(String[] args) throws InterruptedException {
 		var config = Configuration.parse(args);
-		Sender sender = switch(config.threading()) {
+		Sender sender = switch (config.threading()) {
 			case POOLED -> new PooledSender(
 					Send::sendMessageAndWaitForReply,
 					config.messageCount(),
@@ -63,7 +62,7 @@ public class Send {
 				throw new IllegalArgumentException("Please specify the implementation.");
 			var implementation = Threading.valueOf(args[0].toUpperCase());
 			var messageCount = args.length == 2 ? Integer.parseInt(args[1]) : DEFAULT_MESSAGE_COUNT;
-			var threadCount = args.length ==3 ? Integer.parseInt(args[2]) : DEFAULT_THREAD_COUNT;
+			var threadCount = args.length == 3 ? Integer.parseInt(args[2]) : DEFAULT_THREAD_COUNT;
 			return new Configuration(implementation, messageCount, threadCount);
 		}
 
