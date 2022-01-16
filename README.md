@@ -54,3 +54,6 @@ To try this out, run the client and the server in different shells.
 * client
     * name: `EchoClient`
     * arguments: see [`Send.java`.](src/main/java/dev/nipafx/lab/loom/echo/client/Send.java), 
+
+**Note**:
+For a much more thorough experiment with an echo server, check out Elliot Barlas' [project-loom-experiment](https://github.com/ebarlas/project-loom-experiment).
