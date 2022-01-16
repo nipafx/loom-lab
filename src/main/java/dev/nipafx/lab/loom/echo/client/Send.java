@@ -61,7 +61,7 @@ public class Send {
 			if (args.length == 0)
 				throw new IllegalArgumentException("Please specify the implementation.");
 			var implementation = Threading.valueOf(args[0].toUpperCase());
-			var messageCount = args.length == 2 ? Integer.parseInt(args[1]) : DEFAULT_MESSAGE_COUNT;
+			var messageCount = args.length >= 2 ? Integer.parseInt(args[1]) : DEFAULT_MESSAGE_COUNT;
 			var threadCount = args.length == 3 ? Integer.parseInt(args[2]) : DEFAULT_THREAD_COUNT;
 			return new Configuration(implementation, messageCount, threadCount);
 		}
