@@ -7,7 +7,9 @@ Experiments with Project Loom's features based on these JEP(draft)s:
 
 ## Experiments
 
-For these experiments, you need a current [Project Loom EA build](https://jdk.java.net/loom/) and Maven.
+For these experiments, you need a [Project Loom EA build](https://jdk.java.net/loom/).
+As this is a moving target, it might be necessary to use the exact version I used, which was _19-loom+4-115_ from February 13th, 2022.
+
 Build the project with `mvn package` to get `target/loom-lab.jar`.
 To run it:
 
