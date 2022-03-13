@@ -2,15 +2,14 @@ package dev.nipafx.lab.loom.echo.client;
 
 import java.io.UncheckedIOException;
 import java.util.concurrent.Executors;
-import java.util.concurrent.StructuredExecutor;
 import java.util.function.Consumer;
 import java.util.stream.IntStream;
 
 import static java.util.Objects.requireNonNull;
 
 /**
- * Uses Loom's {@link StructuredExecutor} to spawn virtual threads that send messages
- * to a destination defined by the specified {@code sender} (see constructor).
+ * Spawns virtual threads that send messages to a destination defined
+ * by the specified {@code sender} (see constructor).
  */
 class VirtualThreadSender implements Sender {
 
@@ -23,7 +22,7 @@ class VirtualThreadSender implements Sender {
 	}
 
 	@Override
-	public void sendMessages(String messageRoot) throws UncheckedIOException, InterruptedException {
+	public void sendMessages(String messageRoot) throws UncheckedIOException {
 		try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
 			IntStream.range(0, messageCount)
 					.forEach(counter -> {
