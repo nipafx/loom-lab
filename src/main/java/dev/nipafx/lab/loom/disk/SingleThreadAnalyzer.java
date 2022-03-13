@@ -21,8 +21,7 @@ class SingleThreadAnalyzer implements Analyzer {
 							? analyzeFolder(path)
 							: analyzeFile(path))
 					.toList();
-			long totalSize = children.stream().mapToLong(Stats::size).sum();
-			return new FolderStats(folder, totalSize, children);
+			return FolderStats.createWithChildren(folder, children);
 		} catch (IOException ex) {
 			throw new UncheckedIOException(ex);
 		}

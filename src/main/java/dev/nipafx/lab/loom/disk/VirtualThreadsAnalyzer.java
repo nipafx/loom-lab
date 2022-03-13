@@ -41,8 +41,7 @@ class VirtualThreadsAnalyzer implements Analyzer {
 			var children = childrenTasks.stream()
 					.map(Future::resultNow)
 					.toList();
-			long totalSize = children.stream().mapToLong(Stats::size).sum();
-			return new FolderStats(folder, totalSize, children);
+			return FolderStats.createWithChildren(folder, children);
 		} catch (ExecutionException ex) {
 			if (ex.getCause() instanceof RuntimeException runtimeException)
 				throw runtimeException;
@@ -63,7 +62,7 @@ class VirtualThreadsAnalyzer implements Analyzer {
 
 	@Override
 	public String analyzerStats() {
-		return "Number of created virtual threads: " + VIRTUAL_THREAD_COUNT.sum();
+		return "Number of created virtual threads: %,d%n".formatted(VIRTUAL_THREAD_COUNT.sum());
 	}
 
 }

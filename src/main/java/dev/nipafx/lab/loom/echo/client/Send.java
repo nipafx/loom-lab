@@ -7,6 +7,8 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UncheckedIOException;
 import java.net.Socket;
+import java.time.Duration;
+import java.time.Instant;
 
 /**
  * Sends a bunch of messages localhost:8080.
@@ -38,7 +40,8 @@ public class Send {
 	}
 
 	private static void sendMessageAndWaitForReply(String message) {
-		System.out.printf("Sending: '%s'%n", message);
+		var start = Instant.now();
+		System.out.printf("%s: Sending: '%s'%n", start, message);
 		try (var socket = new Socket("localhost", 8080);
 				var receiver = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				var sender = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()))
@@ -46,7 +49,8 @@ public class Send {
 			sender.println(message);
 			sender.flush();
 			var reply = receiver.readLine();
-			System.out.printf("Received: '%s'.%n", reply);
+			var end = Instant.now();
+			System.out.printf("%s: Received: '%s'.%n (%s)", end, reply, Duration.between(start, end));
 		} catch (IOException ex) {
 			throw new UncheckedIOException(ex);
 		}
