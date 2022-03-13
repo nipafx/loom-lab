@@ -26,7 +26,7 @@ class PooledSender implements Sender {
 	}
 
 	@Override
-	public void sendMessages(String messageRoot) throws UncheckedIOException, InterruptedException {
+	public void sendMessages(String messageRoot) throws UncheckedIOException {
 		try (pool) {
 			IntStream.range(0, messageCount)
 					.forEach(counter -> {
