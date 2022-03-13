@@ -1,7 +1,7 @@
 package dev.nipafx.lab.loom.echo.client;
 
 import java.io.UncheckedIOException;
-import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
 import java.util.concurrent.StructuredExecutor;
 import java.util.function.Consumer;
 import java.util.stream.IntStream;
@@ -24,18 +24,14 @@ class VirtualThreadSender implements Sender {
 
 	@Override
 	public void sendMessages(String messageRoot) throws UncheckedIOException, InterruptedException {
-		try (var executor = StructuredExecutor.open()) {
-			var handler = new StructuredExecutor.ShutdownOnFailure();
+		try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
 			IntStream.range(0, messageCount)
 					.forEach(counter -> {
 						String message = messageRoot + " " + counter;
 						Runnable send = () -> sender.accept(message);
 						executor.execute(send);
 					});
-
-			executor.join();
-			handler.throwIfFailed();
-		} catch (ExecutionException ex) {
+		} catch (Exception ex) {
 			if (ex.getCause() instanceof RuntimeException runtimeException)
 				throw runtimeException;
 			else
