@@ -7,10 +7,10 @@ public sealed interface Stats permits FileStats, FolderStats {
 
 	Path path();
 
+	long cardinality();
+
 	long size();
 
-	default List<Stats> children() {
-		return List.of();
-	}
+	List<Stats> children();
 
 }

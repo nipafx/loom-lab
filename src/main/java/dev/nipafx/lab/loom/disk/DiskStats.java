@@ -21,7 +21,7 @@ public class DiskStats {
 		long elapsedTime = System.currentTimeMillis() - startTime;
 
 		System.out.println(stats);
-		System.out.printf("Done in %dms%n(NOTE: This measurement is very unreliable for various reasons, e.g. disk caching.)%n", elapsedTime);
+		System.out.printf("Done in %dms (NOTE: This measurement is very unreliable for various reasons, e.g. disk caching.)%n", elapsedTime);
 		System.out.println(analyzer.analyzerStats());
 	}
 
