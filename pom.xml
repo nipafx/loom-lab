@@ -9,7 +9,6 @@
 	<version>1.0-SNAPSHOT</version>
 
 	<properties>
-		<!-- get Loom EA build from https://jdk.java.net/loom/ -->
 		<maven.compiler.release>19</maven.compiler.release>
 		<maven.compiler.source>19</maven.compiler.source>
 		<maven.compiler.target>19</maven.compiler.target>
