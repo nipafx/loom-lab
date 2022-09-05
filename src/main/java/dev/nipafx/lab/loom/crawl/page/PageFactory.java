@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
 
 import static java.util.Objects.requireNonNull;
 
-public class PageFactory {
+class PageFactory {
 
 	private static final Set<String> GITHUB_HOSTS = Set.of("github.com", "user-images.githubusercontent.com");
 	private static final Pattern REGISTRATION_LINK_PATTERN = Pattern.compile("/issues/\\d+/?$|/pull/\\d+/?$");
@@ -43,7 +43,7 @@ public class PageFactory {
 			new ParserDelegator().parse(
 					new InputStreamReader(new ByteArrayInputStream(html.getBytes())),
 					parser,
-					false);
+					true);
 			return parser.createResult();
 		} catch (IOException ex) {
 			// there's no actual IO operation taking place since the stream reads from an in-memory byte array
