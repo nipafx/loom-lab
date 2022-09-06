@@ -10,6 +10,8 @@ import dev.nipafx.lab.loom.crawl.page.Page;
 import java.util.HashSet;
 import java.util.Set;
 
+import static java.util.stream.Collectors.joining;
+
 public class Pretty {
 
 	private final Set<Page> printedPages;
@@ -20,6 +22,15 @@ public class Pretty {
 		this.result = result;
 	}
 
+	public static String printPageList(Page rootPage) {
+		if (!(rootPage instanceof GitHubPage ghPage))
+			return createPageName(rootPage);
+
+		return ghPage
+				.subtree()
+				.map(Pretty::createPageName)
+				.collect(joining("\n"));
+	}
 
 	public static String printPageTree(Page rootPage) {
 		Pretty pretty = new Pretty(new StringBuilder());
