@@ -31,19 +31,23 @@ public class Statistician {
 	}
 
 	private void evaluateTree(Page page) {
+		if (page instanceof GitHubPage ghPage)
+			ghPage.subtree().forEach(this::evaluatePage);
+		else
+			evaluatePage(page);
+	}
+
+	private void evaluatePage(Page page) {
 		if (evaluatedPages.contains(page))
 			return;
-
 		evaluatedPages.add(page);
+
 		switch (page) {
 			case ErrorPage __ -> numberOfErrors++;
 			case ExternalPage __ -> numberOfExternalLinks++;
 			case GitHubIssuePage __ -> numberOfIssues++;
 			case GitHubPrPage __ -> numberOfPrs++;
 		}
-
-		if (page instanceof GitHubPage ghPage)
-			ghPage.links().forEach(this::evaluateTree);
 	}
 
 	private Stats result() {
