@@ -8,6 +8,9 @@ import java.net.http.HttpClient;
 public class Main {
 
 	public static void main(String[] args) throws Exception {
+		System.out.println("For maximum effect, run this command while the app is resolving a bunch of links:");
+		System.out.printf("jcmd %s Thread.dump_to_file -format=json threads.json%n", ProcessHandle.current().pid());
+
 		var client = HttpClient.newHttpClient();
 		var seedUrl = new URI("https://github.com/junit-pioneer/junit-pioneer/pull/627");
 

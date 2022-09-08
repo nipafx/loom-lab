@@ -23,7 +23,6 @@ public class Statistician {
 		this.evaluatedPages = new HashSet<>();
 	}
 
-
 	public static Stats evaluate(Page rootPage) {
 		Statistician statistician = new Statistician();
 		statistician.evaluateTree(rootPage);

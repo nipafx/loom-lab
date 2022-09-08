@@ -42,3 +42,6 @@ hs_err_pid*
 
 # MacOS
 .DS_Store
+
+# thead dumps
+threads.json

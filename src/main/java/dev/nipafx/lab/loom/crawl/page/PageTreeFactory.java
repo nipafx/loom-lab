@@ -41,9 +41,10 @@ public class PageTreeFactory {
 		resolvedPages.computeIfAbsent(page.url(), __ -> page);
 		System.out.printf("Resolved '%s' with children: %s%n", url, pageWithLinks.links());
 
-		Collection<Page> resolvedLinks = resolveLinks(pageWithLinks.links(), depth - 1);
-		if (page instanceof GitHubPage ghPage)
+		if (page instanceof GitHubPage ghPage) {
+			Collection<Page> resolvedLinks = resolveLinks(pageWithLinks.links(), depth - 1);
 			ghPage.links().addAll(resolvedLinks);
+		}
 		return pageWithLinks.page();
 	}
 
@@ -68,10 +69,12 @@ public class PageTreeFactory {
 		}
 	}
 
-	private PageWithLinks fetchPageWithLinks(URI url) {
+	private PageWithLinks fetchPageWithLinks(URI url) throws InterruptedException {
 		try {
 			var pageBody = fetchPageAsString(url);
 			return PageFactory.parsePage(url, pageBody);
+		} catch (InterruptedException iex) {
+			throw iex;
 		} catch (Exception ex) {
 			return new PageWithLinks(new ErrorPage(url, ex));
 		}
