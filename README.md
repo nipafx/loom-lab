@@ -1,15 +1,16 @@
 # Project Loom Lab
 
-Experiments with Project Loom's features based on these JEP(draft)s:
+Experiments with Project Loom's features based on these JEPs:
 
-* [Structured Concurrency](https://openjdk.java.net/jeps/8277129)
-* [Virtual Threads](https://openjdk.java.net/jeps/8277131)
+* [JEP 425: Virtual Threads](https://openjdk.org/jeps/425)
+* [JEP 428: Structured Concurrency](https://openjdk.org/jeps/428)
 
 ## Experiments
 
-For these experiments, you need a [Project Loom EA build](https://jdk.java.net/loom/).
-As this is a moving target, it might be necessary to use the exact version I used, which was _19-loom+4-115_ from February 13th, 2022.
+* [Disk Stats](#disk-stats)
+* [Echo Client & Server](#echo-client--server)
 
+For these experiments, you need [Java 19](https://jdk.java.net/19/).
 Build the project with `mvn package` to get `target/loom-lab.jar`.
 To run it:
 
@@ -29,9 +30,9 @@ For details on these, see specific experiments below.
 Walks over all folders and files in a given directory to gather their respective sizes.
 Can be configured to either run as a single thread or with one virtual thread for each file/folder.
 
-* package: [`dev.nipafx.lab.loom.disk`](src/main/java/dev/nipafx/lab/loom/disk)
 * name: `DiskStats`
 * arguments: see [`DiskStats.java`.](src/main/java/dev/nipafx/lab/loom/disk/DiskStats.java)
+* package: [`dev.nipafx.lab.loom.disk`](src/main/java/dev/nipafx/lab/loom/disk)
 
 ### Echo Client & Server
 
@@ -49,13 +50,13 @@ Server protocol:
 
 To try this out, run the client and the server in different shells.
 
-* package: [`dev.nipafx.lab.loom.echo`](src/main/java/dev/nipafx/lab/loom/echo)
 * server
 	* name: `EchoServer`
 	* arguments: see [`Echo.java`.](src/main/java/dev/nipafx/lab/loom/echo/server/Echo.java)
 * client
     * name: `EchoClient`
     * arguments: see [`Send.java`.](src/main/java/dev/nipafx/lab/loom/echo/client/Send.java), 
+* package: [`dev.nipafx.lab.loom.echo`](src/main/java/dev/nipafx/lab/loom/echo)
 
 **Note**:
 For a much more thorough experiment with an echo server, check out Elliot Barlas' [project-loom-experiment](https://github.com/ebarlas/project-loom-experiment).
