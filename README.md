@@ -9,6 +9,7 @@ Experiments with Project Loom's features based on these JEPs:
 
 * [Disk Stats](#disk-stats)
 * [Echo Client & Server](#echo-client--server)
+* [GitHub Crawler](#github-crawler)
 
 For these experiments, you need [Java 19](https://jdk.java.net/19/).
 Build the project with `mvn package` to get `target/loom-lab.jar`.
@@ -60,3 +61,12 @@ To try this out, run the client and the server in different shells.
 
 **Note**:
 For a much more thorough experiment with an echo server, check out Elliot Barlas' [project-loom-experiment](https://github.com/ebarlas/project-loom-experiment).
+
+### GitHub Crawler
+
+Starting from a given seed URL, crawls GitHub pages and prints their connections and statistics.
+Only runs with virtual threads but also uses/demonstrates some Data-Oriented Programming concepts.
+
+* name: `GitHubCrawl`
+* arguments: see [`GitHubCrawl.java`.](src/main/java/dev/nipafx/lab/loom/crawl/GitHubCrawl.java)
+* package: [`dev.nipafx.lab.loom.crawl`](src/main/java/dev/nipafx/lab/loom/crawl)
