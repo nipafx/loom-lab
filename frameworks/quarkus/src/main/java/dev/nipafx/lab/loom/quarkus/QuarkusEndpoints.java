@@ -1,17 +1,15 @@
-package dev.nipafx.lab.loom;
+package dev.nipafx.lab.loom.quarkus;
 
 import io.smallrye.common.annotation.RunOnVirtualThread;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
 
 @Path("api")
-public class Endpoints {
+public class QuarkusEndpoints {
 
 	@GET
 	@Path("current-thread")
-	@RunOnVirtualThread
+//	@RunOnVirtualThread
 	public String currentThread() {
 		return """
 			{

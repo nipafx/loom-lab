@@ -78,6 +78,7 @@ Only runs with virtual threads but also uses/demonstrates some data-oriented pro
 ## Frameworks
 
 * [Spring Boot](#spring-boot)
+* [Quarkus](#quarkus)
 
 ### Spring Boot
 
@@ -91,3 +92,18 @@ java -jar target/loom-spring-boot.jar virtual
 * package: [`dev.nipafx.lab.loom.spring_boot`](frameworks/spring_boot/src/main/java/dev/nipafx/lab/loom/spring_boot/)
 
 Once launched, visit http://localhost:8080/api/current-thread.
+
+### Quarkus
+
+Change into the project folder `frameworks/quarkus` and build with `mvn package`, then run it with:
+
+```
+java --add-opens java.base/java.lang=ALL-UNNAMED -jar target/quarkus-app/quarkus-run.jar
+```
+
+Once launched, visit http://localhost:8080/api/current-thread.
+To switch to virtual threads, edit [`QuarkusEndpoints`](frameworks/quarkus/src/main/java/dev/nipafx/lab/loom/quarkus/QuarkusEndpoints.java) and uncomment `@RunOnVirtualThread`, which allows configuring virtual threads for individual endpoints.
+This annotation requires the `--add-opens`.
+The artifact _quarkus-netty-loom-adaptor_ (see [`pom.xml`](frameworks/quarkus/pom.xml)) seems to improve performance of Quarkus on virtual threads.
+
+As far as I know, the blog post [_Writing simpler reactive REST services with Quarkus Virtual Thread support_](https://quarkus.io/guides/virtual-threads) is the most up-to-date documentation on Quarkus and virtual threads.

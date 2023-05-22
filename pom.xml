@@ -12,6 +12,7 @@
 	<modules>
 		<module>experiments</module>
 		<module>frameworks/spring_boot</module>
+		<module>frameworks/quarkus</module>
 	</modules>
 
 	<properties>
