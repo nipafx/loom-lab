@@ -26,7 +26,7 @@ class VirtualThreadSender implements Sender {
 		try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
 			IntStream.range(0, messageCount)
 					.forEach(counter -> {
-						String message = messageRoot + " " + counter;
+						var message = STR."\{messageRoot} \{counter}";
 						Runnable send = () -> sender.accept(message);
 						executor.execute(send);
 					});

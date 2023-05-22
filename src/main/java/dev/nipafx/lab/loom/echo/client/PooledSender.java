@@ -30,7 +30,7 @@ class PooledSender implements Sender {
 		try (pool) {
 			IntStream.range(0, messageCount)
 					.forEach(counter -> {
-						String message = messageRoot + " " + counter;
+						var message = STR."\{messageRoot} \{counter}";
 						Runnable send = () -> sender.accept(message);
 						CompletableFuture.runAsync(send, pool);
 					});

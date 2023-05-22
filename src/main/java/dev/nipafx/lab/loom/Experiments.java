@@ -17,7 +17,7 @@ public class Experiments {
 			case "DiskStats" -> DiskStats.main(experimentArgs);
 			case "EchoServer" -> Echo.main(experimentArgs);
 			case "EchoClient" -> Send.main(experimentArgs);
-			default -> throw new IllegalArgumentException("Unknown experiment: " + experiment);
+			default -> throw new IllegalArgumentException(STR."Unknown experiment: \{experiment}");
 		}
 	}
 

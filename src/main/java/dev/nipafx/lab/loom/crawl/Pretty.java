@@ -34,10 +34,10 @@ public class Pretty {
 
 	private static String createPageName(Page page) {
 		return switch (page) {
-			case ErrorPage error -> "💥 ERROR: " + error.url().getHost() + " / " + createErrorDetails(error);
-			case ExternalPage external -> "💤 EXTERNAL: " + external.url().getHost();
-			case GitHubIssuePage issue -> "🐈 ISSUE #" + issue.issueNumber();
-			case GitHubPrPage pr -> "🐙 PR #" + pr.prNumber();
+			case ErrorPage error -> STR."💥 ERROR: \{error.url().getHost()} / \{createErrorDetails(error)}";
+			case ExternalPage external -> STR."💤 EXTERNAL: \{external.url().getHost()}";
+			case GitHubIssuePage issue -> STR."🐈 ISSUE #\{issue.issueNumber()}";
+			case GitHubPrPage pr -> STR."🐙 PR #\{pr.prNumber()}";
 		};
 	}
 
@@ -45,7 +45,7 @@ public class Pretty {
 		var cause = getRootCause(error.ex());
 		var rootMessage = cause.getMessage();
 		var hasRootMessage = rootMessage != null && !rootMessage.isBlank() && !rootMessage.equals("null");
-		var message = hasRootMessage ? " - " + cause.getMessage() : "";
+		var message = hasRootMessage ? STR." - \{cause.getMessage()}" : "";
 		return cause.getClass().getSimpleName() + message;
 	}
 
