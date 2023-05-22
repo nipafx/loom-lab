@@ -16,8 +16,9 @@ public class Endpoints {
 		return """
 			{
 				"current-thread": "%s",
-				"is-virtual": "%sr"
+				"is-virtual": "%s"
 			}
 			""".formatted(Thread.currentThread(), Thread.currentThread().isVirtual());
-    }
+	}
+
 }
