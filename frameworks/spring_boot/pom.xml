@@ -42,13 +42,6 @@
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.10.1</version>
-				<configuration>
-					<fork>true</fork>
-					<enablePreview>true</enablePreview>
-					<compilerArgs>
-						<compilerArg>--enable-preview</compilerArg>
-					</compilerArgs>
-				</configuration>
 			</plugin>
 			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>

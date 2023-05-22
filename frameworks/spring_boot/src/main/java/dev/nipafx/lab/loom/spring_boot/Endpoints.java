@@ -12,12 +12,12 @@ public class Endpoints {
 
 	@GetMapping(path = "/current-thread", produces = APPLICATION_JSON_VALUE)
 	public String currentThread() {
-		return STR."""
+		return """
 			{
-				"current-thread": "\{Thread.currentThread()}",
-				"is-virtual": "\{Thread.currentThread().isVirtual()}"
+				"current-thread": "%s",
+				"is-virtual": "%s"
 			}
-			""";
+			""".formatted(Thread.currentThread(), Thread.currentThread().isVirtual());
 	}
 
 }

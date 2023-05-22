@@ -84,7 +84,7 @@ Only runs with virtual threads but also uses/demonstrates some data-oriented pro
 Build the project with `mvn package`, then run it with:
 
 ```
-java --enable-preview  -jar target/loom-spring-boot.jar virtual
+java -jar target/loom-spring-boot.jar virtual
 ```
 
 * arguments: see [`SpringBootApplication.java`.](frameworks/spring_boot/src/main/java/dev/nipafx/lab/loom/spring_boot/SpringBootApplication.java)
