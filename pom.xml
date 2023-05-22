@@ -11,6 +11,7 @@
 
 	<modules>
 		<module>experiments</module>
+		<module>frameworks/spring_boot</module>
 	</modules>
 
 	<properties>

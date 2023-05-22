@@ -5,6 +5,8 @@ Experiments with Project Loom's features based on these JEPs:
 * [JEP 444: Virtual Threads](https://openjdk.org/jeps/444)
 * [JEP 453: Structured Concurrency](https://openjdk.org/jeps/453)
 
+This includes experimenting with these features directly as well as activating them in web frameworks.
+
 You need [Java 21](https://jdk.java.net/21/).
 
 ## Experiments
@@ -71,3 +73,21 @@ Only runs with virtual threads but also uses/demonstrates some data-oriented pro
 * name: `GitHubCrawl`
 * arguments: see [`GitHubCrawl.java`.](experiments/src/main/java/dev/nipafx/lab/loom/crawl/GitHubCrawl.java)
 * package: [`dev.nipafx.lab.loom.crawl`](experiments/src/main/java/dev/nipafx/lab/loom/crawl)
+
+
+## Frameworks
+
+* [Spring Boot](#spring-boot)
+
+### Spring Boot
+
+Build the project with `mvn package`, then run it with:
+
+```
+java --enable-preview  -jar target/loom-spring-boot.jar virtual
+```
+
+* arguments: see [`SpringBootApplication.java`.](frameworks/spring_boot/src/main/java/dev/nipafx/lab/loom/spring_boot/SpringBootApplication.java)
+* package: [`dev.nipafx.lab.loom.spring_boot`](frameworks/spring_boot/src/main/java/dev/nipafx/lab/loom/spring_boot/)
+
+Once launched, visit http://localhost:8080/api/current-thread.
