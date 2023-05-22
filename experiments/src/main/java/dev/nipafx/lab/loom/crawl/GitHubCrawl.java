@@ -1,6 +1,8 @@
 package dev.nipafx.lab.loom.crawl;
 
 import dev.nipafx.lab.loom.crawl.crawler.PageTreeFactory;
+import dev.nipafx.lab.loom.crawl.operations.Pretty;
+import dev.nipafx.lab.loom.crawl.operations.Statistician;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -23,13 +25,22 @@ public class GitHubCrawl {
 		var factory = new PageTreeFactory(client);
 		var rootPage = factory.createPage(config.seedUrl(), config.depth());
 
-		System.out.println("\n---\n");
-		System.out.println(Statistician.evaluate(rootPage));
-		System.out.println("\n---\n");
-		System.out.println(Pretty.printPageList(rootPage));
-		System.out.println("\n---\n");
-		System.out.println(Pretty.printPageTree(rootPage));
-		System.out.println("\n---\n");
+		System.out.println(STR."""
+
+				---
+
+				\{Statistician.evaluate(rootPage)}
+
+				---
+
+				\{Pretty.printPageList(rootPage)}
+
+				---
+
+				\{Pretty.printPageTree(rootPage)}
+
+				---
+				""");
 	}
 
 	private record Configuration(URI seedUrl, int depth) {

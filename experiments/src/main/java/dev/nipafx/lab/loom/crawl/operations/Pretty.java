@@ -1,4 +1,4 @@
-package dev.nipafx.lab.loom.crawl;
+package dev.nipafx.lab.loom.crawl.operations;
 
 import dev.nipafx.lab.loom.crawl.page.ErrorPage;
 import dev.nipafx.lab.loom.crawl.page.ExternalPage;

@@ -1,4 +1,4 @@
-module loom.lab {
+module loom.experiments {
 	// for virtual thread / structured concurrency APIs
 	requires jdk.incubator.concurrent;
 

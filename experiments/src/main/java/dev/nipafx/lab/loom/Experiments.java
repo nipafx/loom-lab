@@ -1,5 +1,6 @@
 package dev.nipafx.lab.loom;
 
+import dev.nipafx.lab.loom.crawl.GitHubCrawl;
 import dev.nipafx.lab.loom.disk.DiskStats;
 import dev.nipafx.lab.loom.echo.client.Send;
 import dev.nipafx.lab.loom.echo.server.Echo;
@@ -17,6 +18,7 @@ public class Experiments {
 			case "DiskStats" -> DiskStats.main(experimentArgs);
 			case "EchoServer" -> Echo.main(experimentArgs);
 			case "EchoClient" -> Send.main(experimentArgs);
+			case "GitHubCrawl" -> GitHubCrawl.main(experimentArgs);
 			default -> throw new IllegalArgumentException(STR."Unknown experiment: \{experiment}");
 		}
 	}

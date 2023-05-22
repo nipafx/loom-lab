@@ -20,6 +20,7 @@ local.properties
 
 .idea/
 *.iws
+*.iml
 /out/
 
 # Visual Studio Code

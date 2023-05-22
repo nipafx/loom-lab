@@ -4,37 +4,34 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>dev.nipafx.lab.loom</groupId>
-	<artifactId>aggregator</artifactId>
+	<artifactId>experiments</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<packaging>pom</packaging>
 
-	<modules>
-		<module>experiments</module>
-	</modules>
+	<parent>
+		<groupId>dev.nipafx.lab.loom</groupId>
+		<artifactId>aggregator</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
 
 	<properties>
 		<maven.compiler.release>21</maven.compiler.release>
 		<maven.compiler.source>21</maven.compiler.source>
 		<maven.compiler.target>21</maven.compiler.target>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.10.1</version>
-				<configuration>
-					<fork>true</fork>
-					<enablePreview>true</enablePreview>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.2.2</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>dev.nipafx.lab.loom.Experiments</mainClass>
+						</manifest>
+					</archive>
+					<finalName>loom-experiments</finalName>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
