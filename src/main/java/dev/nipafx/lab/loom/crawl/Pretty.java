@@ -45,7 +45,7 @@ public class Pretty {
 		var cause = getRootCause(error.ex());
 		var rootMessage = cause.getMessage();
 		var hasRootMessage = rootMessage != null && !rootMessage.isBlank() && !rootMessage.equals("null");
-		String message = hasRootMessage ? " - " + cause.getMessage() : "";
+		var message = hasRootMessage ? " - " + cause.getMessage() : "";
 		return cause.getClass().getSimpleName() + message;
 	}
 

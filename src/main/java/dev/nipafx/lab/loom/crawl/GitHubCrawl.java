@@ -1,6 +1,6 @@
 package dev.nipafx.lab.loom.crawl;
 
-import dev.nipafx.lab.loom.crawl.page.PageTreeFactory;
+import dev.nipafx.lab.loom.crawl.crawler.PageTreeFactory;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -19,7 +19,6 @@ public class GitHubCrawl {
 		System.out.printf("jcmd %s Thread.dump_to_file -format=json threads.json%n", ProcessHandle.current().pid());
 
 		var client = HttpClient.newHttpClient();
-		var seedUrl = new URI("https://github.com/junit-pioneer/junit-pioneer/pull/627");
 
 		var factory = new PageTreeFactory(client);
 		var rootPage = factory.createPage(config.seedUrl(), config.depth());
@@ -38,7 +37,7 @@ public class GitHubCrawl {
 		static Configuration parse(String[] args) throws URISyntaxException {
 			if (args.length < 2)
 				throw new IllegalArgumentException("Please specify the seed URL and depth.");
-			var seedUrl = new URI("https://github.com/junit-pioneer/junit-pioneer/pull/627");
+			var seedUrl = new URI(args[0]);
 			var depth = Integer.parseInt(args[1]);
 			return new Configuration(seedUrl, depth);
 		}

@@ -1,4 +1,6 @@
-package dev.nipafx.lab.loom.crawl.page;
+package dev.nipafx.lab.loom.crawl.crawler;
+
+import dev.nipafx.lab.loom.crawl.page.Page;
 
 import java.net.URI;
 import java.util.Set;

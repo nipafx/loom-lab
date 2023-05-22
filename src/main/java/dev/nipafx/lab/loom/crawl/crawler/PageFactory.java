@@ -1,4 +1,8 @@
-package dev.nipafx.lab.loom.crawl.page;
+package dev.nipafx.lab.loom.crawl.crawler;
+
+import dev.nipafx.lab.loom.crawl.page.ExternalPage;
+import dev.nipafx.lab.loom.crawl.page.GitHubIssuePage;
+import dev.nipafx.lab.loom.crawl.page.GitHubPrPage;
 
 import javax.swing.text.AttributeSet;
 import javax.swing.text.MutableAttributeSet;
