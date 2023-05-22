@@ -8,7 +8,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping("/api")
-public class Endpoints {
+public class SpringBootEndpoints {
 
 	@GetMapping(path = "/current-thread", produces = APPLICATION_JSON_VALUE)
 	public String currentThread() {

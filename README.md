@@ -15,11 +15,11 @@ You need [Java 21](https://jdk.java.net/21/).
 * [Echo Client & Server](#echo-client--server)
 * [GitHub Crawler](#github-crawler)
 
-Build the project with `mvn package` to get `experiments/target/loom-experiments.jar`.
+Change into the project folder `experiments` and build it with `mvn package` to get `target/loom-experiments.jar`.
 To run it:
 
 ```
-java --enable-preview -p experiments/target/loom-experiments.jar -m loom.experiments $EXPERIMENT $ARGUMENTS
+java --enable-preview -p target/loom-experiments.jar -m loom.experiments $EXPERIMENT $ARGUMENTS
 ```
 
 Where:
@@ -82,16 +82,17 @@ Only runs with virtual threads but also uses/demonstrates some data-oriented pro
 
 ### Spring Boot
 
-Build the project with `mvn package`, then run it with:
+Change into the project folder `frameworks/spring_boot` and build with `mvn package`, then run it with:
 
 ```
-java -jar target/loom-spring-boot.jar virtual
+java -jar target/loom-spring-boot.jar
 ```
-
-* arguments: see [`SpringBootApplication.java`.](frameworks/spring_boot/src/main/java/dev/nipafx/lab/loom/spring_boot/SpringBootApplication.java)
-* package: [`dev.nipafx.lab.loom.spring_boot`](frameworks/spring_boot/src/main/java/dev/nipafx/lab/loom/spring_boot/)
 
 Once launched, visit http://localhost:8080/api/current-thread.
+To switch to virtual threads, append the command line parameter `virtual`.
+The switch is implemented in [`SpringBootApplication`](frameworks/spring_boot/src/main/java/dev/nipafx/lab/loom/spring_boot/SpringBootApplication.java), which explicitly replaces the executors used to submit requests to.
+
+As far as I know, the blog post [_Embracing Virtual Threads_](https://spring.io/blog/2022/10/11/embracing-virtual-threads) is the most up-to-date documentation on Spring and virtual threads.
 
 ### Quarkus
 
