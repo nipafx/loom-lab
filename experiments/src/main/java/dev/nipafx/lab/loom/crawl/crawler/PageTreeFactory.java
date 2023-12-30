@@ -3,7 +3,6 @@ package dev.nipafx.lab.loom.crawl.crawler;
 import dev.nipafx.lab.loom.crawl.page.ErrorPage;
 import dev.nipafx.lab.loom.crawl.page.GitHubPage;
 import dev.nipafx.lab.loom.crawl.page.Page;
-import jdk.incubator.concurrent.StructuredTaskScope;
 
 import java.io.IOException;
 import java.net.URI;
@@ -15,10 +14,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 import static java.util.Objects.requireNonNull;
 
@@ -56,7 +52,7 @@ public class PageTreeFactory {
 			return Collections.emptySet();
 
 		try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
-			List<Future<Page>> futurePages = new ArrayList<>();
+			List<StructuredTaskScope.Subtask<Page>> futurePages = new ArrayList<>();
 			for (URI link : links)
 				futurePages.add(scope.fork(() -> createPage(link, depth)));
 
@@ -64,7 +60,7 @@ public class PageTreeFactory {
 			scope.throwIfFailed();
 
 			return futurePages.stream()
-					.map(Future::resultNow)
+					.map(StructuredTaskScope.Subtask::get)
 					.toList();
 		} catch (ExecutionException ex) {
 			// this should not happen as `ErrorPage` instances should have been created for all errors

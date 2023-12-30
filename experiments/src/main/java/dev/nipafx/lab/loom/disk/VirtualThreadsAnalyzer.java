@@ -7,10 +7,8 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
+import java.util.concurrent.StructuredTaskScope;
 import java.util.concurrent.atomic.LongAdder;
-
-import jdk.incubator.concurrent.StructuredTaskScope;
 
 import static java.util.function.Predicate.not;
 
@@ -24,8 +22,8 @@ class VirtualThreadsAnalyzer implements Analyzer {
 	@Override
 	public FolderStats analyzeFolder(Path folder) throws UncheckedIOException, InterruptedException {
 		try (var scope = new StructuredTaskScope.ShutdownOnFailure();
-				var content = Files.list(folder)) {
-			List<Future<Stats>> childrenTasks = content
+			 var content = Files.list(folder)) {
+			List<StructuredTaskScope.Subtask<Stats>> childrenTasks = content
 					.filter(not(Files::isSymbolicLink))
 					.<Callable<Stats>>map(path -> Files.isDirectory(path)
 							? () -> analyzeFolder(path)
@@ -38,7 +36,7 @@ class VirtualThreadsAnalyzer implements Analyzer {
 			scope.throwIfFailed();
 
 			var children = childrenTasks.stream()
-					.map(Future::resultNow)
+					.map(StructuredTaskScope.Subtask::get)
 					.toList();
 			return FolderStats.createWithChildren(folder, children);
 		} catch (ExecutionException ex) {
