@@ -37,7 +37,7 @@ public class PageTreeFactory {
 		System.out.printf("Resolving '%s'...%n", url);
 		var pageWithLinks = fetchPageWithLinks(url);
 		var page = pageWithLinks.page();
-		resolvedPages.computeIfAbsent(page.url(), __ -> page);
+		resolvedPages.putIfAbsent(page.url(), page);
 		System.out.printf("Resolved '%s' with children: %s%n", url, pageWithLinks.links());
 
 		if (page instanceof GitHubPage ghPage) {
