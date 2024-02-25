@@ -11,7 +11,7 @@
 
 	<properties>
 		<maven.compiler.release>21</maven.compiler.release>
-		<compiler-plugin.version>3.11.0</compiler-plugin.version>
+		<compiler-plugin.version>3.12.1</compiler-plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>

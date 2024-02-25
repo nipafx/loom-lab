@@ -59,7 +59,7 @@ To try this out, run the client and the server in different shells.
 	* arguments: see [`Echo.java`.](experiments/src/main/java/dev/nipafx/lab/loom/echo/server/Echo.java)
 * client
     * name: `EchoClient`
-    * arguments: see [`Send.java`.](experiments/src/main/java/dev/nipafx/lab/loom/echo/client/Send.java), 
+    * arguments: see [`Send.java`.](experiments/src/main/java/dev/nipafx/lab/loom/echo/client/Send.java),
 * package: [`dev.nipafx.lab.loom.echo`](experiments/src/main/java/dev/nipafx/lab/loom/echo)
 
 **Note**:
