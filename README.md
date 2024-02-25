@@ -89,10 +89,9 @@ java -jar target/loom-spring-boot.jar
 ```
 
 Once launched, visit http://localhost:8080/api/current-thread.
-To switch to virtual threads, append the command line parameter `virtual`.
-The switch is implemented in [`SpringBootApplication`](frameworks/spring_boot/src/main/java/dev/nipafx/lab/loom/spring_boot/SpringBootApplication.java), which explicitly replaces the executors used to submit requests to.
+To switch to virtual threads, append the command line parameter `--spring.threads.virtual.enabled=true`, which sets the Spring property `spring.threads.virtual.enabled`, which in turn leads to Spring using a virtual thread for each request.
 
-As far as I know, the blog post [_Embracing Virtual Threads_](https://spring.io/blog/2022/10/11/embracing-virtual-threads) is the most up-to-date documentation on Spring and virtual threads.
+As far as I know, [the release notes for version 3.2](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.2-Release-Notes#support-for-virtual-threads) are the most up-to-date documentation on Spring and virtual threads.
 
 ### Quarkus
 
